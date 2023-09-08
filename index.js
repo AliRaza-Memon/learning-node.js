@@ -13,6 +13,7 @@
 
 
 //given below prgram is executed by using callback to wait 
+//Asynchronous 
 console.log("Before");
 
 
@@ -20,21 +21,32 @@ console.log("Before");
 //     console.log('Repositories:', repositories);
 //   });
   
-
+//Nested Structure
 getUser(1,function(user){
-    console.log("Ali Raza");
-    console.log('User',user);
-
     getRepositories(user.getRepositories,(repos) =>{
-        console.log('Repos',repos)
-    });
+        getCommits(repos,(commit) =>{
+            //Callback Hell
+        });
 
+    });
 });
+
 console.log('After');
+
+// Synchronous
+console.log('Before');
+const user = getUser(1);
+const repos = getRepositories(user.gitHubUserName);
+const commits = getCommits[0];
+console.log('After ')
+
+
 
 //Callbacks
 //Promises
 //Async/await
+
+
 
 function getUser(id,callback){
         setTimeout(()=>{
